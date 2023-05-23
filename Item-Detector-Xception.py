@@ -13,21 +13,24 @@ model = Xception(weights='imagenet', include_top=True)
 K = 5
 
 # Function to perform object detection on an image
-def perform_object_detection(img):
+def perform_object_detection(image):
+    # Convert the image to RGB mode and discard alpha channel if present
+    img = image.convert("RGB")
+
     # Resize the image according to the model's requirements
     img = img.resize((299, 299))
-
+    
     # Convert to numpy array and preprocess
     x = np.array(img)
     x = np.expand_dims(x, axis=0)
     x = preprocess_input(x)
-
+    
     # Perform object detection
     features = model.predict(x)
-
+    
     # Return the top predicted labels with confidence scores
     labels = decode_predictions(features, top=K)[0]
-
+    
     return labels
 
 
