@@ -32,6 +32,8 @@ def perform_object_detection(image):
 
 # Main Streamlit app
 def main():
+    image = Image.open('invoke_logo.jpg')  
+    st.image(image, caption="Version 230523", use_column_width=True)
     st.title("Object Detection App")
     
     # Create a file uploader for image files
