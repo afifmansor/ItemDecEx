@@ -18,7 +18,7 @@ def perform_object_detection(image):
     img = image.resize((299, 299))
     
     # Convert to numpy array and preprocess
-    x = image.img_to_array(img)
+    x = np.array(img)
     x = np.expand_dims(x, axis=0)
     x = preprocess_input(x)
     
