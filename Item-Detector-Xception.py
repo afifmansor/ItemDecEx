@@ -25,7 +25,7 @@ def perform_object_detection(image):
     # Perform object detection
     features = model.predict(x)
     
-    # Return the top predicted labels
+    # Return the top predicted labels with confidence scores
     labels = decode_predictions(features, top=K)[0]
     
     return labels
@@ -49,12 +49,13 @@ def main():
             # Perform object detection
             labels = perform_object_detection(image)
             
-            # Extract the file name and labels
+            # Extract the file name, labels, and confidence scores
             file_name = file.name
             label_names = [label[1] for label in labels]
+            confidence_scores = [label[2] for label in labels]
             
             # Append the results to the list
-            results.append({"File Name": file_name, "Label": label_names})
+            results.append({"File Name": file_name, "Label": label_names, "Confidence Score": confidence_scores})
         
         # Create the dataframe from the results list
         results_df = pd.DataFrame(results)
