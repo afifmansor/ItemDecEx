@@ -38,8 +38,8 @@ def main():
     uploaded_files = st.file_uploader("Upload Images", accept_multiple_files=True)
     
     if uploaded_files:
-        # Create an empty dataframe to store the results
-        results_df = pd.DataFrame(columns=["File Name", "Label"])
+        # Create an empty list to store the results
+        results = []
         
         # Iterate over the uploaded files
         for file in uploaded_files:
@@ -53,8 +53,11 @@ def main():
             file_name = file.name
             label_names = [label[1] for label in labels]
             
-            # Append the results to the dataframe
-            results_df = results_df.append({"File Name": file_name, "Label": label_names}, ignore_index=True)
+            # Append the results to the list
+            results.append({"File Name": file_name, "Label": label_names})
+        
+        # Create the dataframe from the results list
+        results_df = pd.DataFrame(results)
         
         # Show the results as a CSV file
         st.subheader("Results")
