@@ -1,7 +1,7 @@
 import streamlit as st
-from keras.applications.xception import Xception
-from keras.preprocessing import image
-from keras.applications.xception import preprocess_input, decode_predictions
+from tensorflow.keras.applications.xception import Xception
+from tensorflow.keras.preprocessing import image
+from tensorflow.keras.applications.xception import preprocess_input, decode_predictions
 import numpy as np
 import pandas as pd
 from PIL import Image
